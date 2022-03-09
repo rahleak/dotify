@@ -4,11 +4,12 @@ import Login from './Login';
 import './App.css';
 import SpotifyWebApi from "spotify-web-api-js";
 import Player from "./Player";
+import { useDataLayerValue } from './DataLayer'
 
 const dotify = new SpotifyWebApi();
 
 function App() {
-  const [token, setToken] = useState(null); // null is initial value for token
+  const [{ user, token }, dispatch] = useDataLayerValue();  //pulling from the data layer. disptach shoots it right in the data layer
 
   //Run code based on a given condition
   useEffect(() => {
@@ -17,12 +18,21 @@ function App() {
     const _token = hash.access_token;
 
     if (_token) {
-      setToken(_token);
-
+      
+      dispatch({
+        type: 'SET_TOKEN',
+        token: _token
+      })
+      
+      
       dotify.setAccessToken(_token);
 
       dotify.getMe().then(user => {
-        console.log('🥰', user);
+      
+      dispatch({
+        type: 'SET_USER',
+        user: user
+        });
       });
     }
 
@@ -32,7 +42,7 @@ function App() {
   return (
     <div className="app">
       {
-        token ? <Player /> :  <Login />
+        token ? <Player dotify={dotify}/> :  <Login />
       }
     </div>
   );
