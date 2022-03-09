@@ -14,6 +14,14 @@ const scopes = [
 
 export const getTokenFromUrl = () => {
   return window.location.hash
+    .substring(1) //chopping the string up
+    .split('&') //don't want any parameters past the & 
+    .reduce((initial, item) => {
+    let parts = item.split('=')
+    initial[parts[0]] = decodeURIComponent(parts[1]);
+
+    return initial;
+  }, {});
 }
 
 export const loginUrl = `${AUTH_URL}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`;
