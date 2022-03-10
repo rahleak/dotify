@@ -34,6 +34,13 @@ function App() {
         user: user
         });
       });
+
+      dotify.getUserPlaylists().then((playlists) => {
+        dispatch({
+          type: "SET_PLAYLISTS",
+          playlists: playlists
+        })
+      })
     }
 
     console.log("i have a token 🤩", token)

@@ -4,7 +4,7 @@ export const initialState = {
   playing: false,
   item: null,
   //REMOVE AFTER DEVLOPMENT
-  token: "BQCMFzDptrx-yYM8w2j_1kFrGPC2zVC1a7fkDLS2q5sD045LX913ik2ovSjsQ8gy6IEDpt8WbrTFZ--Qeo4QCUl59Y34ISbZUO3dhrU_cLphyqzkt-gh7EPgVhzIf9PXClTr_TR7A5-XyBU1oiUIeJGkYnBnyglFTuY9122JYSk3E19OU7nU"
+  // token: "BQCMFzDptrx-yYM8w2j_1kFrGPC2zVC1a7fkDLS2q5sD045LX913ik2ovSjsQ8gy6IEDpt8WbrTFZ--Qeo4QCUl59Y34ISbZUO3dhrU_cLphyqzkt-gh7EPgVhzIf9PXClTr_TR7A5-XyBU1oiUIeJGkYnBnyglFTuY9122JYSk3E19OU7nU"
 };
 
 //reducers main job is to listen to actions
@@ -20,10 +20,17 @@ const reducer = (state, action) => {
       }
 
     case 'SET_TOKEN':
-    return {
-    ...state,
-    token: action.token
-    }
+      return {
+        ...state,
+        token: action.token
+      }
+
+    case 'SET_PLAYLISTS':
+      return {
+        ...state,
+        playlists: action.playlists
+      };
+      
     default: // if nothing happens. action dispatched that has nothing to do with it.
       return state; // where nothing changes
   }
