@@ -1,10 +1,11 @@
 import React from 'react';
 import './Body.css';
+import Header from './Header.js';
 
-export default function Body() {
+export default function Body({ dotify }) {
   return (
     <div className="body">
-      <h1>I'm the body!</h1>
+      <Header dotify={dotify}/>
     </div>
   )
 }

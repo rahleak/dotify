@@ -4,12 +4,12 @@ import Sidebar from "./Sidebar";
 import Body from "./Body";
 import Footer from "./Footer";
 
-export default function Player() {
+export default function Player({ dotify }) {
   return (
     <div className="player">
       <div className="player-body"> 
       <Sidebar />
-      <Body />
+      <Body dotify={dotify}/>
        
       </div>
 
