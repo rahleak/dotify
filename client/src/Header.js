@@ -17,7 +17,7 @@ export default function Header() {
       </div>
 
       <div className="header-right">
-        <Avatar src={user?.images[0]?.url}  />
+        <Avatar src={user?.images[0]?.url}  alt={user?.display_name}/>
         <h4>{user?.display_name}</h4>
       </div>
     </div>
